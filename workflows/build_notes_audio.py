@@ -9,7 +9,7 @@ log = Log('build_notes_audio')
 
 def main(pptx_path):
     pptx = PPTXFile(pptx_path)
-    pptx.write_audio(pptx_path + '.mp3')
+    pptx.write_video(pptx_path)
 
 
 if __name__ == "__main__":

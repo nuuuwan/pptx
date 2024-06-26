@@ -3,8 +3,7 @@ import unittest
 
 from powerpoint import PPTXFile
 
-TEST_PPTX_PATH = os.path.join('tests', 'test.pptx')
-TEST_AUDIO_PATH = os.path.join('tests', 'test.mp3')
+TEST_PPTX_PATH = os.path.abspath(os.path.join('tests', 'test.pptx'))
 
 
 class TestPPTXFile(unittest.TestCase):
@@ -23,10 +22,12 @@ class TestPPTXFile(unittest.TestCase):
             ],
         )
 
-    def test_write_audio(self):
+    def test_image_path_list(self):
         pptx = PPTXFile(TEST_PPTX_PATH)
+        for image_path in pptx.image_path_list:
+            self.assertTrue(os.path.exists(image_path))
 
-        if os.path.exists(TEST_AUDIO_PATH):
-            os.remove(TEST_AUDIO_PATH)
-        pptx.write_audio(TEST_AUDIO_PATH)
-        self.assertTrue(os.path.exists(TEST_AUDIO_PATH))
+    def test_write_video(self):
+        pptx = PPTXFile(TEST_PPTX_PATH)
+        video_path = pptx.write_video()
+        self.assertTrue(os.path.exists(video_path))

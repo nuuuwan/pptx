@@ -2,3 +2,5 @@ utils-nuuuwan
 python-pptx
 gTTS
 pydub 
+win32com
+moviepy
