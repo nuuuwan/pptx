@@ -11,6 +11,7 @@ log = Log('TTSFile')
 
 class TTSFile:
     TEMP_AUDIO_DIR = os.path.join(tempfile.gettempdir(), 'tts_audio')
+    PLAYBACK_SPEED = 1.25
 
     def __init__(self, audio_path: str):
         self.audio_path = audio_path
@@ -18,7 +19,7 @@ class TTSFile:
     @staticmethod
     @cache
     def write_line_in_temp(line: str) -> str:
-        HASH_SALT = 'v0857'
+        HASH_SALT = 'v0914'
         h = Hash.md5(line + HASH_SALT)
         os.makedirs(TTSFile.TEMP_AUDIO_DIR, exist_ok=True)
         temp_audio_path = os.path.join(TTSFile.TEMP_AUDIO_DIR, f'{h}.mp3')
@@ -40,6 +41,7 @@ class TTSFile:
         combined = AudioSegment.empty()
         for temp_audio_path in temp_audio_paths:
             audio = AudioSegment.from_mp3(temp_audio_path)
+            audio = audio.speedup(playback_speed=TTSFile.PLAYBACK_SPEED)
             combined += audio
             combined += TTSFile.delim_audio_segment()
 
