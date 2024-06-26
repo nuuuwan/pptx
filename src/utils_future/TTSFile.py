@@ -24,7 +24,7 @@ class TTSFile:
         os.makedirs(TTSFile.TEMP_AUDIO_DIR, exist_ok=True)
         temp_audio_path = os.path.join(TTSFile.TEMP_AUDIO_DIR, f'{h}.mp3')
         if not os.path.exists(temp_audio_path):
-            tts = gTTS(text=line, lang='en', slow=False)
+            tts = gTTS(text=line, lang='en', tld='co.uk', slow=False)
             tts.save(temp_audio_path)
         return temp_audio_path
 
