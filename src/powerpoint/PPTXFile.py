@@ -5,6 +5,7 @@ import win32com.client
 from gtts import gTTS
 from moviepy.editor import (AudioFileClip, ImageClip, VideoFileClip,
                             concatenate_videoclips)
+from pydub import AudioSegment
 from utils import Hash, Log
 
 from pptx import Presentation as PPTXPresentation
@@ -59,9 +60,13 @@ class PPTXFile:
         content = ' '.join(notes)
         audio_path = path_base + '.mp3'
         if not os.path.exists(audio_path):
-            tts = gTTS(content)
+            tts = gTTS(content, lang='en', slow=False)
             tts.save(audio_path)
             log.debug(f'Wrote {audio_path}')
+
+        audio = AudioSegment.from_file(audio_path)
+        audio = audio.speedup(playback_speed=1.2)
+        audio.export(audio_path, format='mp3')
 
         audio_clip = AudioFileClip(audio_path)
         return audio_clip
