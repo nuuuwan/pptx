@@ -38,7 +38,6 @@ def main(pptx_path):
         )
 
 
-
 if __name__ == "__main__":
     pptx_path = sys.argv[1]
     log.debug(f'{pptx_path=}')
