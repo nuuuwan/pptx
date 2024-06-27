@@ -49,6 +49,7 @@ class PPTXFile:
         for slide in self.presentation.slides:
             notes_content = slide.notes_slide.notes_text_frame.text
             notes_content = notes_content.replace('AI', 'A.I.')
+            notes_content = notes_content.replace('...', '')
             notes = notes_content.split(PPTXFile.DELIM_NOTES)
             # filter out links
             notes = [note for note in notes if 'http' not in note]

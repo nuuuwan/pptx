@@ -1,3 +1,4 @@
+import math
 import sys
 
 from utils import Log
@@ -17,18 +18,25 @@ def main(pptx_path):
 
     avg_n_notes = sum(n_notes_list) / len(n_notes_list)
     for i, n_notes in enumerate(n_notes_list, start=1):
+        if i % 10 == 1:
+            log.debug('')
         p = n_notes / avg_n_notes
+        log2_p = math.log2(p)
         emoji = ''
-        if p > 2:
+        if log2_p > 1:
             emoji = '🔴'
-        elif p > 1.5:
-            emoji = '🟠'
+        elif log2_p < -1:
+            emoji = '🔵'
+        else:
+            continue
+
         log.debug(
             f'slide-{i:02d}'.rjust(10)
             + f'{n_notes:,}'.rjust(10)
             + f'{p:.0%}'.rjust(10)
             + emoji
         )
+
 
 
 if __name__ == "__main__":
