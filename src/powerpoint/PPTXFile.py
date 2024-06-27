@@ -30,7 +30,7 @@ class PPTXFile:
         os.makedirs(dir_path, exist_ok=True)
         return dir_path
 
-    @cached_property
+    @property
     def image_path_list(self) -> list[str]:
         app = win32com.client.Dispatch("Powerpoint.Application")
         presentation = app.Presentations.Open(self.file_path)
