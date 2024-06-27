@@ -47,9 +47,9 @@ class PPTXFile:
     def notes_list(self) -> list[str]:
         notes_list = []
         for slide in self.presentation.slides:
-            notes = slide.notes_slide.notes_text_frame.text.split(
-                PPTXFile.DELIM_NOTES
-            )
+            notes_content = slide.notes_slide.notes_text_frame.text
+            notes_content = notes_content.replace('AI', 'A.I.')
+            notes = notes_content.split(PPTXFile.DELIM_NOTES)
             # filter out links
             notes = [note for note in notes if 'http' not in note]
             notes_list.append(notes)
