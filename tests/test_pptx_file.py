@@ -11,8 +11,8 @@ class TestPPTXFile(unittest.TestCase):
     def setUp(self):
         shutil.rmtree(os.path.join('tests', 'test-files'), ignore_errors=True)
 
-    def tearDown(self):
-        self.setUp()
+    # def tearDown(self):
+    #     self.setUp()
 
     def test_general(self):
         pptx = PPTXFile(TEST_PPTX_PATH)
@@ -20,7 +20,7 @@ class TestPPTXFile(unittest.TestCase):
             pptx.notes_list,
             [
                 [
-                    'Notes on first slides.',
+                    'The note on the first line says: A.I. is very cool. A.I. is the future. I love A.I..',
                     '',
                     'Second line of notes. ',
                     '',
