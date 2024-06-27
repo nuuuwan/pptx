@@ -30,7 +30,7 @@ class PPTXFile:
         os.makedirs(dir_path, exist_ok=True)
         return dir_path
 
-    @property
+    @cached_property
     def image_path_list(self) -> list[str]:
         app = win32com.client.Dispatch("Powerpoint.Application")
         presentation = app.Presentations.Open(self.file_path)
@@ -56,16 +56,24 @@ class PPTXFile:
         return notes_list
 
     @staticmethod
+    def get_delim_audio_segment():
+        delim_audio_path = os.path.join('media', 'tabla-click.mp3')
+        return AudioSegment.from_file(delim_audio_path)
+
+    @staticmethod
     def get_audio_clip(path_base, notes: list[str]):
-        content = ' '.join(notes)
+        content = ' '.join(notes) + '\n\n.'
         audio_path = path_base + '.mp3'
         if not os.path.exists(audio_path):
             tts = gTTS(content, lang='en', slow=False)
             tts.save(audio_path)
             log.debug(f'Wrote {audio_path}')
 
-        audio = AudioSegment.from_file(audio_path)
-        audio = audio.speedup(playback_speed=1.2)
+        audio = AudioSegment.from_file(audio_path).speedup(playback_speed=1.2)
+
+        audio += AudioSegment.silent(duration=500)
+        audio += PPTXFile.get_delim_audio_segment()
+        AudioSegment.silent(duration=1000)
         audio.export(audio_path, format='mp3')
 
         audio_clip = AudioFileClip(audio_path)
