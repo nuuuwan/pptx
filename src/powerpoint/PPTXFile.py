@@ -3,8 +3,8 @@ from functools import cached_property
 
 import win32com.client
 from gtts import gTTS
-from moviepy.editor import (AudioFileClip, ImageClip, VideoFileClip,
-                            concatenate_videoclips)
+from moviepy.editor import (AudioFileClip, CompositeAudioClip, ImageClip,
+                            VideoFileClip, concatenate_videoclips)
 from pydub import AudioSegment
 from utils import Hash, Log
 
@@ -114,6 +114,16 @@ class PPTXFile:
         combined_video_clip = concatenate_videoclips(
             video_clips, method="compose"
         )
+
+        # add background music
+        audio_clip = AudioFileClip(
+            os.path.join('media', 'thelounge.mp3')
+        ).set_duration(combined_video_clip.duration)
+        composite_audio_clip = CompositeAudioClip(
+            [combined_video_clip.audio, audio_clip]
+        )
+        combined_video_clip.audio = composite_audio_clip
+
         combined_video_path = os.path.join(self.dir_path, 'video.mp4')
         combined_video_clip.write_videofile(combined_video_path, fps=24)
         log.info(f'Wrote {combined_video_path}')
