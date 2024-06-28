@@ -63,7 +63,7 @@ class PPTXFile:
 
     @staticmethod
     def get_audio_clip(path_base, notes: list[str]):
-        content = ' '.join(notes) + '\n\n.'
+        content = ' '.join(notes) + '\n\n'
         audio_path = path_base + '.mp3'
         if not os.path.exists(audio_path):
             tts = gTTS(content, lang='en', slow=False)
