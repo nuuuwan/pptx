@@ -62,7 +62,7 @@ class PPTXFile:
         return AudioSegment.from_file(delim_audio_path)
 
     @staticmethod
-    def get_audio_clip(path_base, notes: list[str]):
+    def get_audio_clip(path_base, notes: list[str],is_last: bool):
         content = ' '.join(notes) + '\n\n'
         audio_path = path_base + '.mp3'
         if not os.path.exists(audio_path):
@@ -74,7 +74,8 @@ class PPTXFile:
 
         audio += AudioSegment.silent(duration=1000)
         # audio += PPTXFile.get_delim_audio_segment()
-        AudioSegment.silent(duration=2000)
+        end_duration = 10_000 if is_last else 1000
+        AudioSegment.silent(duration=end_duration)
         audio.export(audio_path, format='mp3')
 
         audio_clip = AudioFileClip(audio_path)
@@ -101,11 +102,13 @@ class PPTXFile:
         for i, (notes, image_path) in enumerate(
             zip(self.notes_list, self.image_path_list)
         ):
+            
             content = ' '.join(notes)
             h = Hash.md5(content)[:6]
             path_base = os.path.join(self.dir_path, f'{i:03d}-{h}')
 
-            audio_clip = PPTXFile.get_audio_clip(path_base, notes)
+            is_last = i == len(self.notes_list) - 1
+            audio_clip = PPTXFile.get_audio_clip(path_base, notes,is_last)
             video_clip = PPTXFile.get_video_clip(
                 path_base, image_path, audio_clip
             )
