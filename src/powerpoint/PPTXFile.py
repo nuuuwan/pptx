@@ -116,9 +116,11 @@ class PPTXFile:
         )
 
         # add background music
-        audio_clip = AudioFileClip(
-            os.path.join('media', 'thelounge.mp3')
-        ).set_duration(combined_video_clip.duration)
+        audio_clip = (
+            AudioFileClip(os.path.join('media', 'thelounge.mp3'))
+            .set_duration(combined_video_clip.duration)
+            .volumex(0.5)
+        )
         composite_audio_clip = CompositeAudioClip(
             [combined_video_clip.audio, audio_clip]
         )
