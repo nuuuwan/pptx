@@ -72,8 +72,8 @@ class PPTXFile:
 
         audio = AudioSegment.from_file(audio_path).speedup(playback_speed=1.2)
 
-        audio += AudioSegment.silent(duration=500)
-        audio += PPTXFile.get_delim_audio_segment()
+        audio += AudioSegment.silent(duration=1000)
+        # audio += PPTXFile.get_delim_audio_segment()
         AudioSegment.silent(duration=1000)
         audio.export(audio_path, format='mp3')
 
