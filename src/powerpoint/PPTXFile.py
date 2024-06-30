@@ -1,18 +1,13 @@
 import os
 import re
+import shutil
 import tempfile
 from functools import cached_property
 
 import win32com.client
 from gtts import gTTS
-from moviepy.editor import (
-    AudioFileClip,
-    CompositeAudioClip,
-    ImageClip,
-    VideoFileClip,
-    afx,
-    concatenate_videoclips,
-)
+from moviepy.editor import (AudioFileClip, CompositeAudioClip, ImageClip,
+                            VideoFileClip, afx, concatenate_videoclips)
 from pydub import AudioSegment
 from utils import Hash, Log
 
@@ -66,7 +61,6 @@ class PPTXFile:
             notes = [note for note in notes if 'http' not in note]
             notes_list.append(notes)
         return notes_list
-
 
     @staticmethod
     def get_audio_clip(
@@ -148,4 +142,9 @@ class PPTXFile:
         combined_video_path = os.path.join(self.dir_path, 'video.mp4')
         combined_video_clip.write_videofile(combined_video_path, fps=24)
         log.info(f'Wrote {combined_video_path}')
+
+        copy_video_path = self.file_path.replace('.pptx', '-video.mp4')
+        shutil.copy(combined_video_path, copy_video_path)
+        log.info(f'Copied to {copy_video_path}')
+
         return combined_video_path
