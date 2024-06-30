@@ -1,4 +1,6 @@
 import os
+import re
+import tempfile
 from functools import cached_property
 
 import win32com.client
@@ -31,8 +33,8 @@ class PPTXFile:
 
     @cached_property
     def dir_path(self):
-        tokens = self.file_path.split('.')
-        dir_path = '.'.join(tokens[:-1]) + '-files'
+        file_name = os.path.basename(self.file_path).split('.')[0]
+        dir_path = os.path.join(tempfile.gettempdir(), f'pptx-{file_name}')
         os.makedirs(dir_path, exist_ok=True)
         return dir_path
 
@@ -55,33 +57,36 @@ class PPTXFile:
         for slide in self.presentation.slides:
             notes_content = slide.notes_slide.notes_text_frame.text
             notes_content = notes_content.replace('AI', 'A.I.')
-            notes_content = notes_content.replace('...', '')
+            notes_content = notes_content.replace('...', ' ')
+            notes_content = notes_content.replace('..', ' ')
+            notes_content = notes_content.replace('…', ' ')
+            notes_content = re.sub(r' +', ' ', notes_content)
             notes = notes_content.split(PPTXFile.DELIM_NOTES)
             # filter out links
             notes = [note for note in notes if 'http' not in note]
             notes_list.append(notes)
         return notes_list
 
-    @staticmethod
-    def get_delim_audio_segment():
-        delim_audio_path = os.path.join('media', 'tabla-click.mp3')
-        return AudioSegment.from_file(delim_audio_path)
 
     @staticmethod
-    def get_audio_clip(path_base, notes: list[str], is_last: bool):
-        content = ' '.join(notes) + '\n\n'
+    def get_audio_clip(
+        path_base, notes: list[str], is_first: bool, is_last: bool
+    ):
+        content = '\n'.join(notes) + '\n\n'
         audio_path = path_base + '.mp3'
         if not os.path.exists(audio_path):
             tts = gTTS(content, lang='en', slow=False)
             tts.save(audio_path)
             log.debug(f'Wrote {audio_path}')
 
-        audio = AudioSegment.from_file(audio_path).speedup(playback_speed=1.2)
+        start_duration = 2_000 if is_first else 500
+        audio = AudioSegment.silent(
+            duration=start_duration
+        ) + AudioSegment.from_file(audio_path).speedup(playback_speed=1.2)
 
-        # audio += AudioSegment.silent(duration=1000)
         # audio += PPTXFile.get_delim_audio_segment()
 
-        end_duration = 10_000 if is_last else 2000
+        end_duration = 10_000 if is_last else 500
         audio += AudioSegment.silent(duration=end_duration)
         audio.export(audio_path, format='mp3')
 
@@ -111,10 +116,13 @@ class PPTXFile:
         ):
             content = ' '.join(notes)
             h = Hash.md5(content)[:6]
-            path_base = os.path.join(self.dir_path, f'{i:03d}-{h}')
+            path_base = os.path.join(self.dir_path, h)
 
+            is_first = i == 0
             is_last = i == len(self.notes_list) - 1
-            audio_clip = PPTXFile.get_audio_clip(path_base, notes, is_last)
+            audio_clip = PPTXFile.get_audio_clip(
+                path_base, notes, is_first, is_last
+            )
             video_clip = PPTXFile.get_video_clip(
                 path_base, image_path, audio_clip
             )

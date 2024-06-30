@@ -17,7 +17,8 @@ class TestPPTXFile(unittest.TestCase):
             pptx.notes_list,
             [
                 [
-                    'The note on the first line says: A.I. is very cool. A.I. is the future. I love A.I..',
+                    'The note on the first line says: A.I. is very cool. '
+                    + 'A.I. is the future. I love A.I ',
                     '',
                     'Second line of notes. ',
                     '',
