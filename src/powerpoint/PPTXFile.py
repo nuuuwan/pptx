@@ -28,14 +28,17 @@ class PPTXFile:
 
     @cached_property
     def dir_path(self):
-        file_name = os.path.basename(self.file_path).split('.')[0]
-        dir_path = os.path.join(tempfile.gettempdir(), f'pptx-{file_name}')
+        file_name_only = os.path.basename(self.file_path).split('.')[0]
+        dir_path = os.path.join(
+            tempfile.gettempdir(), f'pptx-{file_name_only}'
+        )
         os.makedirs(dir_path, exist_ok=True)
         return dir_path
 
     @cached_property
     def image_path_list(self) -> list[str]:
         app = win32com.client.Dispatch("Powerpoint.Application")
+        app.Visible = 1
         presentation = app.Presentations.Open(self.file_path)
         image_path_list = []
         for i, slide in enumerate(presentation.Slides):
@@ -46,16 +49,22 @@ class PPTXFile:
         app.Quit()
         return image_path_list
 
+    @staticmethod
+    def clean_content(x: str) -> str:
+        x = x.replace('AI', 'A.I.')
+        x = x.replace('...', ' ')
+        x = x.replace('..', ' ')
+        x = x.replace('…', ' ')
+        x = re.sub(r' +', ' ', x)
+        return x
+
     @cached_property
     def notes_list(self) -> list[str]:
         notes_list = []
         for slide in self.presentation.slides:
-            notes_content = slide.notes_slide.notes_text_frame.text
-            notes_content = notes_content.replace('AI', 'A.I.')
-            notes_content = notes_content.replace('...', ' ')
-            notes_content = notes_content.replace('..', ' ')
-            notes_content = notes_content.replace('…', ' ')
-            notes_content = re.sub(r' +', ' ', notes_content)
+            notes_content = PPTXFile.clean_content(
+                slide.notes_slide.notes_text_frame.text
+            )
             notes = notes_content.split(PPTXFile.DELIM_NOTES)
             # filter out links
             notes = [note for note in notes if 'http' not in note]
@@ -77,8 +86,6 @@ class PPTXFile:
         audio = AudioSegment.silent(
             duration=start_duration
         ) + AudioSegment.from_file(audio_path).speedup(playback_speed=1.2)
-
-        # audio += PPTXFile.get_delim_audio_segment()
 
         end_duration = 10_000 if is_last else 500
         audio += AudioSegment.silent(duration=end_duration)
@@ -108,6 +115,7 @@ class PPTXFile:
         for i, (notes, image_path) in enumerate(
             zip(self.notes_list, self.image_path_list)
         ):
+            log.debug(f'{i=}, {notes=}')
             content = ' '.join(notes)
             h = Hash.md5(content)[:6]
             path_base = os.path.join(self.dir_path, h)
