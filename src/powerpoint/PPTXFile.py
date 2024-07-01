@@ -65,6 +65,6 @@ class PPTXFile:
             notes_lines = notes.split('\n')
             # filter out links
             notes_lines = [note for note in notes_lines if 'http' not in note]
-            notes = '\n'.join(notes_lines)
+            notes = '\n'.join(notes_lines).strip()
             notes_list.append(notes)
         return notes_list

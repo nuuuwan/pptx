@@ -53,6 +53,7 @@ class PPTXVideoClip:
             notes=notes,
             image_path=image_path,
         ):
+            log.info(f'🎬 Building slide {i_slide}/{n_slides}')
             is_first = i_slide == 1
             is_last = i_slide == n_slides
             return PPTXSlideVideoClip(
