@@ -1,15 +1,16 @@
+import os
 import sys
 
 from utils import Log
 
-from powerpoint import PPTXFile
+from powerpoint import PPTXFile, PPTXVideoClip
 
 log = Log('build_notes_audio')
 
 
 def main(pptx_path):
     pptx = PPTXFile(pptx_path)
-    pptx.write_video()
+    PPTXVideoClip(pptx, os.path.join('media', 'thelounge.mp3')).build()
 
 
 if __name__ == "__main__":
