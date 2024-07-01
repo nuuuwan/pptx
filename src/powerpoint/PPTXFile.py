@@ -32,7 +32,7 @@ class PPTXFile:
         dir_path = os.path.join(
             tempfile.gettempdir(), f'pptx-{file_name_only}'
         )
-        os.makedirs(dir_path, exist_ok=Tru e)
+        os.makedirs(dir_path, exist_ok=True)
         return dir_path
 
     @cached_property
