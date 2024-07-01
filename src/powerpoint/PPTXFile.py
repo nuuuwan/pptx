@@ -32,13 +32,12 @@ class PPTXFile:
         dir_path = os.path.join(
             tempfile.gettempdir(), f'pptx-{file_name_only}'
         )
-        os.makedirs(dir_path, exist_ok=True)
+        os.makedirs(dir_path, exist_ok=Tru e)
         return dir_path
 
     @cached_property
     def image_path_list(self) -> list[str]:
         app = win32com.client.Dispatch("Powerpoint.Application")
-        app.Visible = 1
         presentation = app.Presentations.Open(self.file_path)
         image_path_list = []
         for i, slide in enumerate(presentation.Slides):
@@ -134,7 +133,6 @@ class PPTXFile:
             video_clips, method="compose"
         )
 
-        # add background music
         audio_clip = afx.audio_loop(
             AudioFileClip(os.path.join('media', 'thelounge.mp3')).volumex(
                 0.5
@@ -142,13 +140,18 @@ class PPTXFile:
             duration=combined_video_clip.duration,
         )
 
-        composite_audio_clip = CompositeAudioClip(
+        combined_audio_clip = CompositeAudioClip(
             [combined_video_clip.audio, audio_clip]
         )
-        combined_video_clip.audio = composite_audio_clip
+        combined_video_clip.audio = combined_audio_clip
 
         combined_video_path = os.path.join(self.dir_path, 'video.mp4')
-        combined_video_clip.write_videofile(combined_video_path, fps=24)
+        combined_video_clip.write_videofile(
+            combined_video_path,
+            codec='mpeg4',
+            fps=24,
+            audio_codec='libmp3lame',
+        )
         log.info(f'Wrote {combined_video_path}')
 
         copy_video_path = self.file_path.replace('.pptx', '-video.mp4')

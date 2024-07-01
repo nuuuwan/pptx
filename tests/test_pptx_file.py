@@ -1,5 +1,4 @@
 import os
-import shutil
 import unittest
 
 from powerpoint import PPTXFile
@@ -8,9 +7,6 @@ TEST_PPTX_PATH = os.path.abspath(os.path.join('tests', 'test.pptx'))
 
 
 class TestPPTXFile(unittest.TestCase):
-    def setUp(self):
-        shutil.rmtree(os.path.join('tests', 'test-files'), ignore_errors=True)
-
     def test_general(self):
         pptx = PPTXFile(TEST_PPTX_PATH)
         self.assertEqual(
