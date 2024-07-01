@@ -1,13 +1,9 @@
 import os
 import shutil
 
-from moviepy.editor import (
-    AudioFileClip,
-    CompositeAudioClip,
-    afx,
-    concatenate_videoclips,
-)
-from utils import Log
+from moviepy.editor import (AudioFileClip, CompositeAudioClip, afx,
+                            concatenate_videoclips)
+from utils import Log, Parallel
 
 from powerpoint.PPTXFile import PPTXFile
 from powerpoint.PPTXSlideVideoClip import PPTXSlideVideoClip
@@ -50,24 +46,37 @@ class PPTXVideoClip:
         shutil.copy(combined_video_path, copy_video_path)
         log.info(f'Copied to {copy_video_path}')
 
+    def gen_worker(self, i_slide, n_slides, notes, image_path):
+        def worker(
+            i_slide=i_slide,
+            n_slides=n_slides,
+            notes=notes,
+            image_path=image_path,
+        ):
+            is_first = i_slide == 1
+            is_last = i_slide == n_slides
+            return PPTXSlideVideoClip(
+                self.pptx_file.dir_path,
+                image_path,
+                notes,
+                is_first,
+                is_last,
+            ).build()
+
+        return worker
+
     def build(self):
         slide_video_clips = []
         n_slides = len(self.pptx_file.notes_list)
+        workers = []
         for i_slide, (notes, image_path) in enumerate(
             zip(self.pptx_file.notes_list, self.pptx_file.image_path_list),
             start=1,
         ):
-            is_first = i_slide == 1
-            is_last = i_slide == n_slides
-            slide_video_clips.append(
-                PPTXSlideVideoClip(
-                    self.pptx_file.dir_path,
-                    image_path,
-                    notes,
-                    is_first,
-                    is_last,
-                ).build()
-            )
+            worker = self.gen_worker(i_slide, n_slides, notes, image_path)
+            workers.append(worker)
+
+        slide_video_clips = Parallel.run(workers)
 
         combined_video_clip = concatenate_videoclips(
             slide_video_clips, method="compose"

@@ -39,8 +39,8 @@ class PPTXSlideVideoClip:
             .set_duration(audio_clip.duration)
             .set_audio(audio_clip)
         )
-        clip.write_videofile(video_path, fps=24)
-        log.debug(f'Wrote {video_path}')
+        clip.write_videofile(video_path, fps=24, verbose=False)
+        log.info(f'Wrote {video_path}')
 
         return VideoFileClip(video_path)
 
