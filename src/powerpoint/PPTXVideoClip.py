@@ -45,6 +45,7 @@ class PPTXVideoClip:
         )
         shutil.copy(combined_video_path, copy_video_path)
         log.info(f'Copied to {copy_video_path}')
+        os.startfile(copy_video_path)
 
     def gen_worker(self, i_slide, n_slides, notes, image_path):
         def worker(
