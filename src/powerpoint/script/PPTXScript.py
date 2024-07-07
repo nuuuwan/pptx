@@ -2,14 +2,11 @@ from dataclasses import dataclass
 
 from utils import Log
 
+from powerpoint.script.PPTXScriptSlide import PPTXScriptSlide
 from pptx import Presentation
 from pptx.util import Inches
 
-from powerpoint.builder.PPTXScriptSlide import PPTXScriptSlide
-
 log = Log('PPTXScript')
-
-
 
 
 @dataclass
@@ -20,7 +17,7 @@ class PPTXScript:
         prs = Presentation()
 
         for slide in self.slides:
-            slide_layout = prs.slide_layouts[6] # blank slide 
+            slide_layout = prs.slide_layouts[6]  # blank slide
             prs_slide = prs.slides.add_slide(slide_layout)
 
             if slide.text:
@@ -33,7 +30,11 @@ class PPTXScript:
             if slide.images:
                 log.warning('🤡 Only single image supported (#ForNow)')
                 prs_slide.shapes.add_picture(
-                    slide.images[0], Inches(0), Inches(0), width=prs.slide_width, height=prs.slide_height
+                    slide.images[0],
+                    Inches(0),
+                    Inches(0),
+                    width=prs.slide_width,
+                    height=prs.slide_height,
                 )
 
             if slide.notes:

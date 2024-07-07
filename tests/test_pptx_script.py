@@ -10,7 +10,11 @@ class TestPPTXScript(unittest.TestCase):
             [
                 PPTXScriptSlide(
                     text=['Title'],
-                    images=[os.path.join('tests', 'test_data', 'test-image-sl.jpg')],
+                    images=[
+                        os.path.join(
+                            'tests', 'test_data', 'test-image-sl.jpg'
+                        )
+                    ],
                     notes=[
                         'The title says Title.',
                     ],
@@ -20,9 +24,11 @@ class TestPPTXScript(unittest.TestCase):
         script.write(os.path.join('tests', 'test_data', 'test-script.pptx'))
 
     def test_simple_config(self):
-        PPTXScript.from_simple_config([
+        PPTXScript.from_simple_config(
             [
-               os.path.join('tests', 'test_data', 'test-image-sl.jpg'),
-                'The title says Title',
+                [
+                    os.path.join('tests', 'test_data', 'test-image-sl.jpg'),
+                    'The title says Title',
+                ]
             ]
-        ]).write(os.path.join('tests', 'test_data', 'test-script-simple.pptx'))
+        ).write(os.path.join('tests', 'test_data', 'test-script-simple.pptx'))
