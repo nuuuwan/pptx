@@ -32,3 +32,8 @@ class TestPPTXScript(unittest.TestCase):
                 ]
             ]
         ).write(os.path.join('tests', 'test_data', 'test-script-simple.pptx'))
+
+    def test_md(self):
+        PPTXScript.from_md(
+            os.path.join('tests', 'test_data', 'test-script.md')
+        ).write(os.path.join('tests', 'test_data', 'test-script-md.pptx'))

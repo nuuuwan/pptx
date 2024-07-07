@@ -24,6 +24,13 @@ class PPTXSlideAudioClip:
         self.is_last = is_last
 
     @property
+    def cleaned_text(self) -> str:
+        x = self.text
+        for before, after in [('Rs.', 'Rupees'), ('Matale', 'Marthalay')]:
+            x = x.replace(before, after)
+        return x
+
+    @property
     def audio_path(self) -> str:
         h = Hash.md5(self.text)
         audio_path = os.path.join(self.dir_path, 'audio-clips')
@@ -49,7 +56,7 @@ class PPTXSlideAudioClip:
         return AudioSegment.silent(duration=self.end_duration)
 
     def build_body_audio_segment(self):
-        tts = gTTS(self.text, lang='en', slow=False)
+        tts = gTTS(self.cleaned_text, lang='en', slow=False)
         tts.save(self.audio_path)
         return AudioSegment.from_file(self.audio_path).speedup(
             playback_speed=self.PLAYBACK_SPEED
