@@ -3,7 +3,7 @@ import os
 from moviepy.editor import AudioFileClip, ImageClip, VideoFileClip
 from utils import Hash, Log
 
-from powerpoint.PPTXSlideAudioClip import PPTXSlideAudioClip
+from powerpoint.video.PPTXSlideAudioClip import PPTXSlideAudioClip
 
 log = Log('PPTXSlideVideoClip')
 

@@ -5,8 +5,8 @@ from moviepy.editor import (AudioFileClip, CompositeAudioClip, afx,
                             concatenate_videoclips)
 from utils import Log, Parallel
 
-from powerpoint.PPTXFile import PPTXFile
-from powerpoint.PPTXSlideVideoClip import PPTXSlideVideoClip
+from powerpoint.core import PPTXFile
+from powerpoint.video.PPTXSlideVideoClip import PPTXSlideVideoClip
 
 log = Log('PPTXVideoClip')
 
