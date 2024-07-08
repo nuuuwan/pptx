@@ -1,16 +1,18 @@
 # lk_railway_history
 
-![image](examples/lk_rail_history/images/railway.jpg)
+![image](examples/lk_rail_history/images/railway.png)
 
-A Brief History of Sri Lanka Railways. In Harry Beck Diagrams.
+A Brief History of Railways in Sri Lanka. In Harry Beck Diagrams.
 
-![image](examples/lk_rail_history/images/harry_beck.jpg)
+![image](examples/lk_rail_history/images/harry-beck.jpg)
 
 Henry Charles Beck (also known as Harry Beck), was an English technical draughtsman who created the first diagrammatic London Underground Tube map in 1931.
 
+![image](examples/lk_rail_history/images/beck-map.jpg)
+
 The Design has since been referred to as the Harry Beck Map, and has been copied to represent many transport systems across the world.
 
-In this video, we use Harry Beck diagrams to describe the various stages in the history of the Sri Lanka Railway system.
+In this video, we use Harry Beck diagrams to describe the various stages in the history of Sri Lanka's Railway system.
 
 ![image](examples/lk_rail_history/images/1865.png)
 
@@ -22,7 +24,7 @@ The main reason for building a railway system in Sri Lanka (then Ceylon) was to 
 
 ![image](examples/lk_rail_history/images/1867.png)
 
-The Main Line was extended in stages with service to Kandy beginning in 1867 via Peradeniya.
+The Main Line was extended in stages with service to the hill capital Kandy beginning in 1867 via Peradeniya.
 
 ![image](examples/lk_rail_history/images/1873.png)
 
@@ -52,7 +54,9 @@ On 1 February 1879, the Costal Line was extended from Kalutara to Wadduwa.
 
 The Matale line (sometimes referred to as the Kandy line) branches off the Main Line, and was inaugurated in 1880.
 
-The 28.2 km route was surveyed between 1875 and 1877. In May 1878 the contract to construct the rail line was issued to David Reid for Rs. 1,782,408. The total estimated cost of the Matale extension amounted to Rs. 3,300,000, being a rate of Rs. 189,247 per mile. The line was opened for traffic on 4 October 1880 by the Governor, Sir James Longden, eight months earlier than the contract date, for which Reid was given a Rs. 35,000 bonus.
+The 28.2 km route was surveyed between 1875 and 1877. In May 1878 the contract to construct the rail line was issued to David Reid for Rs. 1,782,408. The total estimated cost of the Matale extension amounted to Rs. 3,300,000, being a rate of Rs. 189,247 per mile.
+
+The line was opened for traffic on 4 October 1880 by the Governor, Sir James Longden, eight months earlier than the contract date, for which Reid was given a Rs. 35,000 bonus.
 
 ![image](examples/lk_rail_history/images/1885.png)
 
@@ -64,7 +68,7 @@ On 31 March 1890, the Costal Line was extended from Wadduwa to Aluthgama.
 
 ![image](examples/lk_rail_history/images/1892.png)
 
-Then up to Kosgoda on 8 September 1892.
+Then from Wadduwa to Kosgoda on 8 September 1892.
 
 ![image](examples/lk_rail_history/images/1893.png)
 
@@ -78,7 +82,7 @@ First, a new line connecting Polgahawela on the Main Line to Kurunegala opened o
 
 Second, on 7 May 1894 the Coastal Line was extended to Galle.
 
-And finally, the Main Line was extended from Nanu Oya, to Bandarawela.
+And finally, the Main Line was extended from Nanu Oya to Bandarawela.
 
 ![image](examples/lk_rail_history/images/1895.png)
 
@@ -88,19 +92,21 @@ On 17 December 1895, the Coastal Line was extended from Galle to Matara.
 
 In 1899, the Northern Line was extended from Kurunegala to Maho.
 
+Tenders for the construction of railway line from Maho to Kankesanthurai were called in January 1900 and construction of the new line started in April of that year.
+
+Construction of the Kankesanthurai-Pallai section, including Jaffna, began in July 1900.
+
 ![image](examples/lk_rail_history/images/1902.png)
 
-Tenders for the construction of railway line from Maho to Kankesanthurai were called in January 1900 and construction of the new line started in April 1900.
-
-Construction of the Kankesanthurai-Pallai section, including Jaffna, began in July 1900. This section was officially opened by Governor Sir J. W. Ridgeway on 11 March 1902.
+This section was officially opened by Governor Sir J. W. Ridgeway on 11 March 1902.
 
 ![image](examples/lk_rail_history/images/1903.png)
 
 1903 saw two new lines commencing service.
 
-First, the Kelani Valley line, connecting Maradana on the Main line, and Yatiyantota, commenced service. The line primarily served rubber plantations in the area.
+First, the Kelani Valley line, connecting Maradana on the Main line, and Yatiyantota commenced service. The line primarily served rubber plantations in the area.
 
-Then on 14 December 1903, the Uda Pussellawa Railway (or UPR), connecting Nanu Oya on the Main Line, and Nuwara Eliya, also commenced service.
+Then on 14 December 1903, the Uda Pussellawa Railway (or UPR), connecting Nanu Oya on the Main Line and Nuwara Eliya, also commenced service.
 
 By 21 December 1903, the UPR was extended from Nuwara Eliya to Kandapola.
 
@@ -112,11 +118,13 @@ Then on 1 November 1904, the Northern Line was extended from Maho to Anuradhapur
 
 ![image](examples/lk_rail_history/images/1905.png)
 
-On 11 March 1905, the line was extended from Anuradhapura to Medawachchiya, and on 1 August 1905 from Medawachchiya to Pallai, finally connecting the national capital Colombo with Jaffna, the capital of the Northern Province.
+On 11 March 1905, the Northern Line was extended from Anuradhapura to Medawachchiya, and on 1 August 1905 from Medawachchiya to Pallai, finally connecting the national capital Colombo with Jaffna, the capital of the Northern Province.
+
+Construction of a new line to Puttalam commenced on 3 July 1907.
 
 ![image](examples/lk_rail_history/images/1908.png)
 
-Construction of a new line to Puttalam commenced on 3 July 1907. The first segment, connecting Ragama on the Main Line, with Ja-Ela, commenced on 9 November 1908.
+The first segment, connecting Ragama on the Main Line, with Ja-Ela, commenced on 9 November 1908.
 
 This new line was originally called the North-Western Line, but was later referred to as the Puttalam Line.
 
@@ -130,8 +138,7 @@ A new branch line off the Kelani Valley line, from Avissawella to Opanayaka via 
 
 ![image](examples/lk_rail_history/images/1914.png)
 
-The Mannar Line, a new line branching off Medawachchiya on the Northern Line, and connecting to Talaimannar Pier, opened in 1914
-.
+The Mannar Line, a new line branching off Medawachchiya on the Northern Line, and connecting to Talaimannar Pier, opened in 1914.
 
 ![image](examples/lk_rail_history/images/1915.png)
 
@@ -171,9 +178,9 @@ In 1943 the track from Bangadeniya to Puttalam was removed, as the rails were re
 
 It was re-laid in 1946 with a number of new stations added to the line. The line was also extended beyond Puttalam to Periyanagavillu.
 
-![image](examples/lk_rail_history/images/1948.png)
-
 By January 1940, all passenger services on the Uda Pussellawa Line were withdrawn and only two freight trains were in operation between Nanu Oya and Ragala.
+
+![image](examples/lk_rail_history/images/1948.png)
 
 On 2 August 1948 all services were withdrawn and the line was completely removed.
 
@@ -193,9 +200,9 @@ The services were restarted from Homagama to Avissawella in 1978.
 
 Due to the Civil war, the Mannar line was closed in 1985.
 
-![image](examples/lk_rail_history/images/1990.png)
+With further escalation of the Civil War, trains, especially the Yaal Devi service (from Colombo to Kankesanturai), became the target of frequent LTTE attacks.
 
-With the further escalation of the Civil War, trains, especially the Yaal Devi service (from Colombo to Kankesanturai), became the target of frequent LTTE attacks.
+![image](examples/lk_rail_history/images/1990.png)
 
 After multiple attacks, service between Vavuniya and Kankesanturai was suspended in 1990.
 
@@ -217,9 +224,9 @@ After the end of the Civil War in 2009, the Northern Line was reopened in stages
 
 ![image](examples/lk_rail_history/images/2013.png)
 
-The segment from Omanthai to Pallai was opened in 2013.
+The segment from Omanthai to Pallai opened in 2013.
 
-A segment of the Mannar line, from Medawachchiya to Madhu Road, was also reopened in 2013.
+Also, the segment of the Mannar line, from Medawachchiya to Madhu Road, was reopened in 2013.
 
 ![image](examples/lk_rail_history/images/2014.png)
 
@@ -235,4 +242,10 @@ The remainder of the Mannar Line was also reopened from Madhu Road to Talaimanna
 
 The Coastal Line was extended from Matara to Beliatta on 8 April 2019.
 
-Various plans have been proposed to extend the Railway Network in Sri Lanka, including an extension of the Coastal Line to Kataragama via Hambantota, and to reopen the Kelani Valley Line from Avissawella to Opanayaka. But these plans are yet to be realized.
+Various plans have been proposed to extend the Railway Network in Sri Lanka, including an extension of the Coastal Line to Kataragama via Hambantota, and to reopen the Kelani Valley Line from Avissawella to Opanayaka.
+
+But these plans are yet to be realized.
+
+Thank's for watching.
+
+And let me know what you think of this video in the comments below.

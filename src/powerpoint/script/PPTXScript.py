@@ -86,10 +86,10 @@ class PPTXScript:
 
             if line.startswith('!['):
                 image_path = line.split('(')[1].split(')')[0]
-                
+
                 notes_lines = []
                 i += 1
-                    
+
                 while i < len(lines):
                     line = lines[i].strip()
                     if line.startswith('!['):
@@ -97,7 +97,7 @@ class PPTXScript:
                         break
                     notes_lines.append(line)
                     i += 1
-                    
+
                 notes = '\n'.join(notes_lines)
                 slides.append(
                     PPTXScriptSlide(

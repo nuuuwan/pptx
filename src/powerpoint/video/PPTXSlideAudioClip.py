@@ -11,9 +11,9 @@ log = Log('PPTXSlideAudioClip')
 class PPTXSlideAudioClip:
     PLAYBACK_SPEED = 1.2
     START_DURATION_FOR_FIRST = 2_000
-    START_DURATION_FOR_NOT_FIRST = 500
+    START_DURATION_FOR_NOT_FIRST = 1000
     END_DURATION_FOR_LAST = 10_000
-    END_DURATION_FOR_NOT_LAST = 500
+    END_DURATION_FOR_NOT_LAST = 1000
 
     def __init__(
         self, dir_path: str, text: str, is_first: bool, is_last: bool
