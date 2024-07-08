@@ -21,7 +21,11 @@ class ImageHighlight:
             for j in range(0, im.size[1], dim):
                 total_brightness = 0
                 for di in range(dim):
+                    if i + di >= im.size[0]:
+                        break
                     for dj in range(dim):
+                        if j + dj >= im.size[1]:
+                            break
                         pixel = im.getpixel((i + di, j + dj))
                         brightness = sum(pixel) / 3
                         total_brightness += brightness
@@ -58,3 +62,4 @@ class ImageHighlight:
         combined = Image.alpha_composite(im, overlay)
         combined.save(output_image_path)
         log.info(f'Wrote {output_image_path}')
+        return output_image_path

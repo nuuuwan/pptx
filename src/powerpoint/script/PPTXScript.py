@@ -1,10 +1,12 @@
 import math
+import tempfile
 from dataclasses import dataclass
 
 from PIL import Image
 from utils import File, Log
 
 from powerpoint.script.PPTXScriptSlide import PPTXScriptSlide
+from powerpoint.tools import ImageHighlight
 from pptx import Presentation
 
 log = Log('PPTXScript')
@@ -17,12 +19,14 @@ class PPTXScript:
     def write(self, pptx_path: str):
         prs = Presentation()
 
+        prev_image_path = None
         for slide in self.slides:
             slide_layout = prs.slide_layouts[6]  # blank slide
             prs_slide = prs.slides.add_slide(slide_layout)
 
             assert len(slide.images) == 1
             image_path = slide.images[0]
+            prev_image_path = image_path
             with Image.open(image_path) as img:
                 image_width, image_height = img.size
 
@@ -42,8 +46,16 @@ class PPTXScript:
             padding_x = (prs.slide_width - width) / 2
             padding_y = (prs.slide_height - height) / 2
 
+            image_path_highlighted = image_path
+            if prev_image_path:
+                image_path_highlighted = ImageHighlight(
+                    image_path, prev_image_path, 800
+                ).write(tempfile.mktemp(prefix='highlighted_', suffix='.png'))
+
+            prev_image_path = image_path
+
             prs_slide.shapes.add_picture(
-                slide.images[0],
+                image_path_highlighted,
                 padding_x,
                 padding_y,
                 width=width,
