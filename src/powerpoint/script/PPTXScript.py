@@ -38,13 +38,13 @@ class PPTXScript:
 
             padding_x = (slide_width - image_display_width) / 2
             padding_y = (slide_height - image_display_height) / 2
-            padding = 100
+            padding = 500_000
             prs_slide.shapes.add_picture(
                 slide.images[0],
                 padding_x + padding,
                 padding_y + padding,
-                width=image_display_width - padding / 2,
-                height=image_display_height - padding / 2,
+                width=image_display_width - padding * 2,
+                height=image_display_height - padding * 2,
             )
 
             if slide.notes:
