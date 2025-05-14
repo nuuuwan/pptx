@@ -1,12 +1,8 @@
 import os
 import shutil
 
-from moviepy.editor import (
-    AudioFileClip,
-    CompositeAudioClip,
-    afx,
-    concatenate_videoclips,
-)
+from moviepy.editor import (AudioFileClip, CompositeAudioClip, afx,
+                            concatenate_videoclips)
 from utils import Log, Parallel
 
 from powerpoint.core import PPTXFile
@@ -35,7 +31,9 @@ class PPTXVideoClip:
         return combined_video_clip
 
     def save(self, combined_video_clip):
-        combined_video_path = os.path.join(self.pptx_file.dir_path, "video.mp4")
+        combined_video_path = os.path.join(
+            self.pptx_file.dir_path, "video.mp4"
+        )
         combined_video_clip.write_videofile(
             combined_video_path,
             fps=24,
