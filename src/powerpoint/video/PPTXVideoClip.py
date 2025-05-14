@@ -1,14 +1,18 @@
 import os
 import shutil
 
-from moviepy.editor import (AudioFileClip, CompositeAudioClip, afx,
-                            concatenate_videoclips)
+from moviepy.editor import (
+    AudioFileClip,
+    CompositeAudioClip,
+    afx,
+    concatenate_videoclips,
+)
 from utils import Log, Parallel
 
 from powerpoint.core import PPTXFile
 from powerpoint.video.PPTXSlideVideoClip import PPTXSlideVideoClip
 
-log = Log('PPTXVideoClip')
+log = Log("PPTXVideoClip")
 
 
 class PPTXVideoClip:
@@ -19,7 +23,7 @@ class PPTXVideoClip:
     @staticmethod
     def add_background_music(combined_video_clip, audio_background_path):
         audio_clip = afx.audio_loop(
-            AudioFileClip(audio_background_path).volumex(0.5),
+            AudioFileClip(audio_background_path).volumex(0.2),
             duration=combined_video_clip.duration,
         )
 
@@ -27,24 +31,22 @@ class PPTXVideoClip:
             [combined_video_clip.audio, audio_clip]
         )
         combined_video_clip.audio = combined_audio_clip
-        log.debug(f'Added background music ({audio_background_path})')
+        log.debug(f"Added background music ({audio_background_path})")
         return combined_video_clip
 
     def save(self, combined_video_clip):
-        combined_video_path = os.path.join(
-            self.pptx_file.dir_path, 'video.mp4'
-        )
+        combined_video_path = os.path.join(self.pptx_file.dir_path, "video.mp4")
         combined_video_clip.write_videofile(
             combined_video_path,
             fps=24,
         )
-        log.info(f'Wrote {combined_video_path}')
+        log.info(f"Wrote {combined_video_path}")
 
         copy_video_path = self.pptx_file.file_path.replace(
-            '.pptx', '-video.mp4'
+            ".pptx", "-video.mp4"
         )
         shutil.copy(combined_video_path, copy_video_path)
-        log.info(f'Copied to {copy_video_path}')
+        log.info(f"Copied to {copy_video_path}")
 
     def gen_worker(self, i_slide, n_slides, notes, image_path):
         def worker(
@@ -53,7 +55,7 @@ class PPTXVideoClip:
             notes=notes,
             image_path=image_path,
         ):
-            log.info(f'🎬 Building slide {i_slide}/{n_slides}')
+            log.info(f"🎬 Building slide {i_slide}/{n_slides}")
             is_first = i_slide == 1
             is_last = i_slide == n_slides
             return PPTXSlideVideoClip(
