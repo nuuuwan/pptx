@@ -1,8 +1,10 @@
 # Sri Lankan Local Government Election 2025
 
-![image](examples\lk_elections_lg_2025\images\hexbin-lgs-by-province.png)
+![image](examples\lk_elections_lg_2025\images\title-slide.png)
 
 Sri Lankan Local Government Election 2025 - Explained with HexMaps.
+
+![image](examples\lk_elections_lg_2025\images\hexbin-lgs-by-province.png)
 
 A HexMap uses uniform hexagonal tiles to represent regions, maintaining geographic layout for clarity and comparability.
 

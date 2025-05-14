@@ -78,6 +78,7 @@ class PPTXVideoClip:
         ):
             worker = self.gen_worker(i_slide, n_slides, notes, image_path)
             workers.append(worker)
+            break  # HACK
 
         slide_video_clips = Parallel.run(workers)
 
